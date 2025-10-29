@@ -10,7 +10,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <nav className="w-full backdrop-blur bg-black/80 flex justify-between font-[inter] items-center py-4 border-b border-b border-yellow-500/20 sticky top-0 z-50 px-8 ">
+      <nav className="w-full backdrop-blur px-5 bg-black/80 flex justify-between font-[inter] items-center py-4 border-b border-b border-yellow-500/20 sticky top-0 z-50 px-8 ">
         <h1 className=" flex text-2xl sm:text-2xl md:text-4xl font-bold text-[var(--color-yellow)]">
           ESTÉTICA PRIME
         </h1>

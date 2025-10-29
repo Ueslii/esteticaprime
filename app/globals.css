@@ -21,6 +21,9 @@ body {
   color: var(--color-gray-light);
   font-family: "Inter", sans-serif;
   border-radius: var(--color-yellow);
+  yelloy: var(--color-yellow);
+  text-primary: var(--color-white);
+  text-secondary: var(--color-black);
 }
 
 /* === Botões === */
@@ -63,4 +66,22 @@ body {
   .border {
     border-color: var(--color-yellow);
   }
+}
+@keyframes pulse-yellow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(250, 204, 21, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
+  }
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
