@@ -78,27 +78,32 @@ export default function Services() {
         ))}
       </div>
       {/* Mobile Carousel */}
-      <div className="md:hidden relative flex justify-start items-stretch snap-x snap-mandatory overflow-x-auto overflow-y-visible w-full min-h-[500px] px-4 space-x-6 scrollbar-none">
+      <div
+        className="md:hidden flex overflow-x-auto overflow-y-visible w-full px-6 py-4 space-x-4 snap-x snap-mandatory scroll-smooth scrollbar-none"
+        onScroll={(e) => {
+          const scrollLeft = e.currentTarget.scrollLeft;
+          const width = e.currentTarget.offsetWidth;
+          const index = Math.round(scrollLeft / (width * 0.8)); // detecta o card mais central
+          setActiveIndex(index);
+        }}
+      >
         {services.map((service, i) => {
-          const offset = i - activeIndex;
-          const isActive = offset === 0;
+          const isActive = i === activeIndex;
 
           return (
             <div
               key={i}
-              className={`absolute transition-all duration-500 ease-in-out ${
+              className={`snap-center transition-all duration-500 ease-in-out transform ${
                 isActive
-                  ? "z-20 scale-100 blur-0 opacity-100"
-                  : "z-10 scale-90 blur-sm opacity-60"
+                  ? "scale-100 opacity-100 blur-0 z-20"
+                  : "scale-90 opacity-60 blur-sm z-10"
               }`}
               style={{
-                transform: `translateX(${offset * 70}%)`,
+                flex: "0 0 80%",
+                scrollSnapAlign: "center",
               }}
-              onClick={() => setActiveIndex(i)}
             >
-              <div className="w-[80vw] max-w-[400px] mx-auto">
-                <ServiceCard {...service} whatsappUrl={whatsappUrl} />
-              </div>
+              <ServiceCard {...service} whatsappUrl={whatsappUrl} />
             </div>
           );
         })}
