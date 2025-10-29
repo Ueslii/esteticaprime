@@ -83,8 +83,17 @@ export default function Services() {
         onScroll={(e) => {
           const scrollLeft = e.currentTarget.scrollLeft;
           const width = e.currentTarget.offsetWidth;
-          const index = Math.round(scrollLeft / (width * 0.8)); // detecta o card mais central
-          setActiveIndex(index);
+          const index = Math.round(scrollLeft / (width * 0.8)); // detecta o card central
+          if (index !== activeIndex) setActiveIndex(index);
+        }}
+        onTouchEnd={(e) => {
+          const container = e.currentTarget;
+          const width = container.offsetWidth;
+          const targetScroll = activeIndex * (width * 0.8);
+          container.scrollTo({
+            left: targetScroll,
+            behavior: "smooth",
+          });
         }}
       >
         {services.map((service, i) => {
@@ -107,6 +116,19 @@ export default function Services() {
             </div>
           );
         })}
+      </div>
+
+      {/* Indicadores */}
+      <div className="flex justify-center mt-4 space-x-2">
+        {services.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveIndex(i)}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              i === activeIndex ? "bg-yellow-400 w-4" : "bg-gray-500/50"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
