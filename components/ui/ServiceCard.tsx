@@ -23,7 +23,7 @@ export default function ServiceCard({
 
   return (
     <div
-      className={`group relative flex flex-col bg-[#0B1320] rounded-xl border border-yellow-500/20 overflow-hidden shadow-lg transition-all duration-500 hover:shadow-yellow-400/20 hover:scale-[1.03] min-h-[480px]`}
+      className={`group relative flex flex-col bg-[#0B1320] rounded-xl border border-yellow-500/20 overflow-visible shadow-lg transition-all duration-500 hover:shadow-yellow-400/20 hover:scale-[1.03] min-h-[480px] min-h-fit`}
     >
       {/* Imagem */}
       <div className="relative w-full h-[260px] overflow-hidden">

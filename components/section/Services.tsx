@@ -51,9 +51,10 @@ const services = [
 ];
 
 export default function Services() {
-  const whatsappUrl = `https://wa.me/${
-    siteInfo.whatsapp
-  }?text=${encodeURIComponent("Olá! Gostaria de agendar um serviço.")}`;
+  const buildWhatsappUrl = (title: string) =>
+    `https://wa.me/${siteInfo.whatsapp}?text=${encodeURIComponent(
+      `Olá! Gostaria de agendar um serviço de ${title}.`
+    )}`;
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -73,14 +74,14 @@ export default function Services() {
           <ServiceCard
             key={service.title}
             {...service}
-            whatsappUrl={whatsappUrl}
+            whatsappUrl={buildWhatsappUrl(service.title)}
           />
         ))}
       </div>
       {/* Mobile Carousel */}
       <div
         id="services-carousel"
-        className="md:hidden relative flex justify-center items-center w-full h-[520px] overflow-hidden py-8 touch-pan-y"
+        className="md:hidden  flex justify-center items-center w-full h-[520px] overflow-visible relative py-8 touch-pan-y"
         onTouchStart={(e) =>
           (e.currentTarget.dataset.startX = e.touches[0].clientX.toString())
         }
@@ -127,7 +128,10 @@ export default function Services() {
               }}
             >
               <div className="w-[85vw] max-w-[400px] min-h-[480px]">
-                <ServiceCard {...service} whatsappUrl={whatsappUrl} />
+                <ServiceCard
+                  {...service}
+                  whatsappUrl={buildWhatsappUrl(service.title)}
+                />
               </div>
             </div>
           );
@@ -152,8 +156,8 @@ export default function Services() {
         </button>
       </div>
       {/* Contato Personalizado */}
-      <div className="mt-12  mx-auto flex flex-col gap-4 ">
-        <div className="bg-yellow-400/20  border  w-full max-w-md rounded-xl border-yellow-100/20 items-center justify-center p-6 shadow-lg gap-19 pt-5">
+      <div className="mt-12 mx-auto">
+        <div className="bg-yellow-400/20 border  rounded-xl border-yellow-100/20 items-center justify-center p-6 shadow-lg">
           <h1 className="text-2xl font-bold py-4 text-yellow-400">
             Não encontrou o serviço que procurava?
           </h1>
@@ -161,12 +165,14 @@ export default function Services() {
             Entre em contato conosco para serviços personalizado.
           </p>
           <a
-            href={whatsappUrl}
+            href={`https://wa.me/${siteInfo.whatsapp}?text=${encodeURIComponent(
+              "Olá! Gostaria de solicitar um orçamento personalizado."
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="py-3 gap-2 text-center justify-center flex bg-yellow-400 text-black font-semibold rounded-full w-full transition-all hover:bg-yellow-300 hover:scale-[1.05] hover:animate-[pulse-yellow_1.2s_ease-in-out_infinite]"
+            className="py-3 gap-2 text-center justify-center flex bg-yellow-400 text-black font-semibold rounded-full w-full transition-all hover:bg-yellow-300 hover:scale-[1.05]"
           >
-            Solicite um orçamento personalizado via WhatsApp
+            Solicite um orçamento personalizado
           </a>
         </div>
       </div>
