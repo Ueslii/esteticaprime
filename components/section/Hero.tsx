@@ -7,7 +7,10 @@ export default function Hero() {
     siteInfo.whatsapp
   }?text=${encodeURIComponent(siteInfo.defaultMessage)}`;
   return (
-    <section id="hero" className="h-[90vh] flex justify-center overflow-hidden">
+    <section
+      id="hero"
+      className="h-[90vh] flex flex-col items-center justify-center text-centeroverflow-hidden"
+    >
       <header>
         <Image
           src="/header.jpg"
@@ -34,7 +37,7 @@ export default function Hero() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 bg-yellow-400 text-black font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg hover:bg-yellow-300 transition"
+          className="flex items-center justify-center gap-2 bg-yellow-400 text-black font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg hover:bg-yellow-300active:scale-110 hover:scale-105 transition-transform duration-150 ease-out "
         >
           <CarFront size={20} />
           AGENDAR SERVIÇO
@@ -42,7 +45,7 @@ export default function Hero() {
 
         <a
           href={`tel:+${siteInfo.whatsapp}`}
-          className="flex items-center justify-center gap-2 text-yellow-400 font-bold px-6 sm:px-8 py-3 sm:py-4 border-2 border-yellow-400 rounded-full hover:bg-yellow-400 hover:text-black transition"
+          className="flex items-center justify-center gap-2 text-yellow-400 font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-yellow-400 hover:text-black transition"
         >
           <Phone size={20} />
           LIGUE AGORA

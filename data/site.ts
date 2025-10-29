@@ -1,5 +1,5 @@
 export const siteInfo = {
   businessName: "Estética Prime",
-  whatsapp: "557199999999", // número no formato DDI + DDD + número
+  whatsapp: "5575988919901", // número no formato DDI + DDD + número
   defaultMessage: "Olá, quero agendar um serviço!",
 };

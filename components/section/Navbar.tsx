@@ -1,8 +1,12 @@
 "use client";
 import { Menu } from "lucide-react";
 import { useState } from "react";
+import { siteInfo } from "@/data/site";
 
 export default function Navbar() {
+  const whatsappUrl = `https://wa.me/${
+    siteInfo.whatsapp
+  }?text=${encodeURIComponent(siteInfo.defaultMessage)}`;
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -26,7 +30,14 @@ export default function Navbar() {
           </a>
         </div>
         <div className="flex text-xl justify-end hidden md:flex">
-          <button className="btn-primary">Agende Agora</button>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 bg-yellow-400 text-black font-bold px-6 sm:px-4 py-2 sm:py-2 rounded-full shadow-lg hover:bg-yellow-300active:scale-110 hover:scale-105 transition-transform duration-150 ease-out "
+          >
+            AGENDAR SERVIÇO
+          </a>
         </div>
         <div className="block md:hidden transition-all duration-300">
           <button onClick={() => setIsOpen(!isOpen)}>
@@ -64,12 +75,14 @@ export default function Navbar() {
               Contato
             </a>
             <div className="px-8 py-4 ">
-              <button
-                className="btn-primary w-full"
-                onClick={() => setIsOpen(false)}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-yellow-400 text-black font-bold px-6 sm:px-4 py-2 sm:py-2 rounded-full shadow-lg hover:bg-yellow-300active:scale-110 hover:scale-105 transition-transform duration-150 ease-out "
               >
-                Agende Agora
-              </button>
+                AGENDAR SERVIÇO
+              </a>
             </div>
           </div>
         )}
