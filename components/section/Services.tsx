@@ -77,7 +77,8 @@ export default function Services() {
           />
         ))}
       </div>
-      <div className="md:hidden relative flex justify-center items-center w-full h-[480px] overflow-hidden">
+      {/* Mobile Carousel */}
+      <div className="md:hidden relative flex justify-start items-stretch snap-x snap-mandatory overflow-x-auto overflow-y-visible w-full min-h-[500px] px-4 space-x-6 scrollbar-none">
         {services.map((service, i) => {
           const offset = i - activeIndex;
           const isActive = offset === 0;
