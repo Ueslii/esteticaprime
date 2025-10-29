@@ -8,7 +8,7 @@ interface ServiceCardProps {
   price: string;
   image: string;
   whatsappUrl: string;
-  includes?: string[]; // 👈 itens inclusos
+  includes?: string[];
 }
 
 export default function ServiceCard({
@@ -54,7 +54,7 @@ export default function ServiceCard({
           onClick={() => setExpanded(!expanded)}
           className="mt-6 text-center bg-yellow-400 text-black font-semibold rounded-full py-3 w-full transition-all hover:bg-yellow-300 hover:scale-[1.05] hover:animate-[pulse-yellow_1.2s_ease-in-out_infinite]"
         >
-          {expanded ? "FECHAR DETALHES" : "AGENDAR ESTE SERVIÇO"}
+          {expanded ? "FECHAR DETALHES" : "MAIS DETALHES"}
         </button>
 
         {/* Expansão suave */}
@@ -64,18 +64,22 @@ export default function ServiceCard({
           }`}
         >
           {expanded && (
-            <ul className="list-disc list-inside text-gray-300 text-sm space-y-1 mt-2 mb-2">
+            <ul className="list-disc mb-2 list-inside text-gray-300 text-sm space-y-1 mt-2 mb-2">
               {includes.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
-              <li>
+              <li className="list-none">
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-2 gap-2 text-center bg-yellow-400 text-black font-semibold rounded-full w-full transition-all hover:bg-yellow-300 hover:scale-[1.05] hover:animate-[pulse-yellow_1.2s_ease-in-out_infinite]"
+                  className="py-3 gap-2 text-center justify-center flex bg-yellow-400 text-black font-semibold rounded-full w-full transition-all hover:bg-yellow-300 hover:scale-[1.05] hover:animate-[pulse-yellow_1.2s_ease-in-out_infinite]"
                 >
-                  Confirmar agendamento via WhatsApp
+                  {title === "Lavagem Detalhada"
+                    ? "ENTRE EM CONTATO"
+                    : title === "Restauração de Motor"
+                    ? "FAÇA UM ORÇAMENTO"
+                    : "AGENDAR ESTE SERVIÇO"}
                 </a>
               </li>
             </ul>

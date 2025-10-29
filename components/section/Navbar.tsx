@@ -29,14 +29,12 @@ export default function Navbar() {
             Contato
           </a>
         </div>
-        <div className="flex text-xl justify-end hidden md:flex">
+        <div className="text-xl justify-end hidden md:flex">
           <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-yellow-400 text-black font-bold px-6 sm:px-4 py-2 sm:py-2 rounded-full shadow-lg hover:bg-yellow-300active:scale-110 hover:scale-105 transition-transform duration-150 ease-out "
+            className="flex items-center justify-center gap-2 bg-yellow-400 text-black font-bold px-6 sm:px-4 py-2 sm:py-2 rounded-full shadow-lg hover:bg-yellow-300active:scale-110 hover:scale-105 transition-transform duration-150 ease-out"
+            href="#services"
           >
-            AGENDAR SERVIÇO
+            AGENDE AGORA
           </a>
         </div>
         <div className="block md:hidden transition-all duration-300">
@@ -76,9 +74,8 @@ export default function Navbar() {
             </a>
             <div className="px-8 py-4 ">
               <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#services"
+                onClick={() => setIsOpen(false)}
                 className="flex items-center justify-center gap-2 bg-yellow-400 text-black font-bold px-6 sm:px-4 py-2 sm:py-2 rounded-full shadow-lg hover:bg-yellow-300active:scale-110 hover:scale-105 transition-transform duration-150 ease-out "
               >
                 AGENDAR SERVIÇO

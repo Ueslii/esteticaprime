@@ -1,34 +1,52 @@
+"use client";
+import { useState } from "react";
 import { siteInfo } from "@/data/site";
 import ServiceCard from "../ui/ServiceCard";
 
 const services = [
   {
-    title: "Polimento Técnico",
-    description: "Polimento longo",
-    price: "R$40,99",
+    title: "Lavagem de Carros Básica",
+    description: "Lavagem rápida e eficiente para manter seu carro limpo.",
+    price: "R$30,00",
     image: "/polimento.jpg",
-    includes: ["Item 1", "Item 2", "Item 3"],
+    includes: ["Lavagem externa", "Secagem manual", "Limpeza de vidros"],
   },
   {
-    title: "Polimento Técnico1",
+    title: "Lavagem de Caminhonetes Básica",
     description: "Polimento longo2",
-    price: "R$40,99",
+    price: "R$40,00",
     image: "/polimento.jpg",
-    includes: ["Item 1", "Item 2", "Item 3"],
+    includes: ["Lavagem externa", "Secagem manual", "Limpeza de vidros"],
   },
   {
-    title: "Polimento Técnico1",
-    description: "Polimento longo2",
-    price: "R$40,99",
+    title: "Lavagem de Motos Básica Pop/Biz/Jet",
+    description: "lavagem para motos pequenas",
+    price: "R$ 15,00",
     image: "/polimento.jpg",
-    includes: ["Item 1", "Item 2", "Item 3"],
+    includes: ["Item 1"],
   },
   {
-    title: "Polimento Técnico1",
-    description: "Polimento longo2",
-    price: "R$40,99",
+    title: "Lavagem de Motos Básica Outras",
+    description: "Outras motos",
+    price: "R$ 20,00",
     image: "/polimento.jpg",
-    includes: ["Item 1", "Item 2", "Item 3"],
+    includes: ["Item 1"],
+  },
+  {
+    title: "Lavagem Detalhada",
+    description:
+      "Lavagem detalhada para Carros, Motos e Caminhonetes apenas com avaliacão, entre em contato.",
+    price: "Entre em contato",
+    image: "/polimento.jpg",
+    includes: ["Entre em contato para mais detalhes"],
+  },
+  {
+    title: "Restauração de Motor",
+    description:
+      "Cansado de ver seu motor sujo? Deixe-nos restaurá-lo para você.",
+    price: "Faça um orçamento",
+    image: "/polimento.jpg",
+    includes: ["Item 1"],
   },
 ];
 
@@ -36,11 +54,12 @@ export default function Services() {
   const whatsappUrl = `https://wa.me/${
     siteInfo.whatsapp
   }?text=${encodeURIComponent("Olá! Gostaria de agendar um serviço.")}`;
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section
       id="services"
-      className="py-20 p-2 flex flex-col items-center justify-center text-center"
+      className="py-20 p-2 flex flex-col items-center justify-center text-center hover:scale-[1.05] hover:shadow-yellow-400/20 hover:z-50"
     >
       <div className="mb-8 text-xl sm:text-3xl md:text-4xl font-bold text-yellow-400">
         <h1>Nossos Serviços</h1>
@@ -58,25 +77,30 @@ export default function Services() {
           />
         ))}
       </div>
-      {/* Mobile Scroll */}
-      <div className="md:hidden relative flex overflow-x-auto snap-x snap-mandatory space-x-6 px-6 pb-8 scrollbar-none">
-        {services.map((service, i) => (
-          <div
-            key={i}
-            className="snap-center shrink-0 w-[85%] relative"
-            style={{
-              transform: `translateX(${i * -10}px) scale(${1 - i * 0.05})`,
-              filter: i === 0 ? "none" : "blur(3px)",
-              zIndex: services.length - i,
-            }}
-          >
-            <ServiceCard
-              key={service.title}
-              {...service}
-              whatsappUrl={whatsappUrl}
-            />
-          </div>
-        ))}
+      <div className="md:hidden relative flex justify-center items-center w-full h-[480px] overflow-hidden">
+        {services.map((service, i) => {
+          const offset = i - activeIndex;
+          const isActive = offset === 0;
+
+          return (
+            <div
+              key={i}
+              className={`absolute transition-all duration-500 ease-in-out ${
+                isActive
+                  ? "z-20 scale-100 blur-0 opacity-100"
+                  : "z-10 scale-90 blur-sm opacity-60"
+              }`}
+              style={{
+                transform: `translateX(${offset * 70}%)`,
+              }}
+              onClick={() => setActiveIndex(i)}
+            >
+              <div className="w-[80vw] max-w-[400px] mx-auto">
+                <ServiceCard {...service} whatsappUrl={whatsappUrl} />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

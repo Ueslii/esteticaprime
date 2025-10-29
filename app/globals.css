@@ -48,6 +48,11 @@ body {
            text-black hover:bg-[var(--color-yellow-hover)] transition-colors;
   }
 }
+@media (max-width: 768px) {
+  .blur-sm {
+    filter: blur(4px) brightness(0.7);
+  }
+}
 
 /* === Cards e Containers === */
 @layer components {
@@ -84,4 +89,13 @@ body {
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+@keyframes cardFocus {
+  0%,
+  100% {
+    transform: scale(1.03);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }

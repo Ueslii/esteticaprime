@@ -3,9 +3,6 @@ import { siteInfo } from "@/data/site";
 import { Phone, CarFront } from "lucide-react";
 
 export default function Hero() {
-  const whatsappUrl = `https://wa.me/${
-    siteInfo.whatsapp
-  }?text=${encodeURIComponent(siteInfo.defaultMessage)}`;
   return (
     <section
       id="hero"
@@ -34,9 +31,7 @@ export default function Hero() {
 
       <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
         <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#services"
           className="flex items-center justify-center gap-2 bg-yellow-400 text-black font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg hover:bg-yellow-300active:scale-110 hover:scale-105 transition-transform duration-150 ease-out "
         >
           <CarFront size={20} />
