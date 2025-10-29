@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* === Variáveis globais === */
+:root {
+  --color-yellow: #fbbf24;
+  --color-yellow-hover: #fcd34d;
+  --color-black: #000000;
+  --color-gray-dark: #111827;
+  --color-white: #ffffff;
+  --color-gray-light: #d1d5db;
+  --color-gray-medium: #9ca3af;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* === Estilo base === */
+body {
+  background-color: var(--color-black);
+  color: var(--color-gray-light);
+  font-family: "Inter", sans-serif;
+  border-radius: var(--color-yellow);
+}
+
+/* === Botões === */
+@layer components {
+  .btn-primary {
+    @apply bg-[var(--color-yellow)] text-black px-8 py-3 rounded-full font-bold text-lg
+           hover:bg-[var(--color-yellow-hover)] transition-colors whitespace-nowrap cursor-pointer shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply border-3 border-[var(--color-yellow)] text-[var(--color-yellow)] px-8 py-4 rounded-full
+           text-lg font-bold hover:bg-[var(--color-yellow)] hover:text-black transition-all;
+  }
+
+  .btn-float {
+    @apply bg-[var(--color-yellow)] text-black w-16 h-16 rounded-full shadow-2xl
+           animate-pulse hover:bg-[var(--color-yellow-hover)] transition-all fixed bottom-6 right-6 flex items-center justify-center;
+  }
+
+  .btn-social {
+    @apply w-12 h-12 bg-[var(--color-yellow)] rounded-full flex items-center justify-center
+           text-black hover:bg-[var(--color-yellow-hover)] transition-colors;
+  }
+}
+
+/* === Cards e Containers === */
+@layer components {
+  .card-service {
+    @apply bg-gray-900 rounded-lg border-2 border-[color:var(--color-yellow)]/20
+           hover:border-[color:var(--color-yellow)]/50 transition-all duration-300 transform hover:scale-105;
+  }
+
+  .card-testimonial {
+    @apply bg-black/30 p-6 rounded-lg border border-[color:var(--color-yellow)]/20;
+  }
+
+  .container-highlight {
+    @apply bg-[color:var(--color-yellow)]/10 border-2 border-[color:var(--color-yellow)] rounded-2xl;
+  }
+  .border {
+    border-color: var(--color-yellow);
+  }
+}
