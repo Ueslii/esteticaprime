@@ -59,7 +59,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="py-20 p-2 flex flex-col items-center justify-center text-center hover:scale-[1.05] hover:shadow-yellow-400/20 hover:z-50"
+      className="py-20 p-2 flex flex-col items-center justify-center text-center hover:shadow-yellow-400/20 hover:z-50"
     >
       <div className="mb-8 text-xl sm:text-3xl md:text-4xl font-bold text-yellow-400">
         <h1>Nossos Serviços</h1>
@@ -79,56 +79,96 @@ export default function Services() {
       </div>
       {/* Mobile Carousel */}
       <div
-        className="md:hidden flex overflow-x-auto overflow-y-visible w-full px-6 py-4 space-x-4 snap-x snap-mandatory scroll-smooth scrollbar-none"
-        onScroll={(e) => {
-          const scrollLeft = e.currentTarget.scrollLeft;
-          const width = e.currentTarget.offsetWidth;
-          const index = Math.round(scrollLeft / (width * 0.8)); // detecta o card central
-          if (index !== activeIndex) setActiveIndex(index);
-        }}
+        id="services-carousel"
+        className="md:hidden relative flex justify-center items-center w-full h-[520px] overflow-hidden py-8 touch-pan-y"
+        onTouchStart={(e) =>
+          (e.currentTarget.dataset.startX = e.touches[0].clientX.toString())
+        }
         onTouchEnd={(e) => {
-          const container = e.currentTarget;
-          const width = container.offsetWidth;
-          const targetScroll = activeIndex * (width * 0.8);
-          container.scrollTo({
-            left: targetScroll,
-            behavior: "smooth",
-          });
+          const startX = parseFloat(e.currentTarget.dataset.startX || "0");
+          const endX = e.changedTouches[0].clientX;
+          const delta = endX - startX;
+
+          if (Math.abs(delta) > 50) {
+            setActiveIndex((prev) =>
+              delta > 0
+                ? (prev - 1 + services.length) % services.length
+                : (prev + 1) % services.length
+            );
+          }
         }}
       >
         {services.map((service, i) => {
-          const isActive = i === activeIndex;
+          const offset = i - activeIndex;
+          const isActive = offset === 0;
+
+          const transform = `
+      translateX(${offset * 75}%) 
+      scale(${isActive ? 1 : 0.9}) 
+      rotateY(${offset * -4}deg)
+    `;
+          const blur = isActive ? "blur(0px)" : "blur(3px)";
+          const zIndex = 10 - Math.abs(offset);
+          const opacity = Math.abs(offset) > 2 ? 0 : 1;
 
           return (
             <div
               key={i}
-              className={`snap-center transition-all duration-500 ease-in-out transform ${
-                isActive
-                  ? "scale-100 opacity-100 blur-0 z-20"
-                  : "scale-90 opacity-60 blur-sm z-10"
-              }`}
+              className="absolute transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex justify-center items-center"
               style={{
-                flex: "0 0 80%",
-                scrollSnapAlign: "center",
+                transform,
+                zIndex,
+                opacity,
+                filter: blur,
+                top: "50%",
+                left: "50%",
+                transformOrigin: "center",
+                translate: "-50% -50%",
               }}
             >
-              <ServiceCard {...service} whatsappUrl={whatsappUrl} />
+              <div className="w-[85vw] max-w-[400px] min-h-[480px]">
+                <ServiceCard {...service} whatsappUrl={whatsappUrl} />
+              </div>
             </div>
           );
         })}
-      </div>
 
-      {/* Indicadores */}
-      <div className="flex justify-center mt-4 space-x-2">
-        {services.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveIndex(i)}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              i === activeIndex ? "bg-yellow-400 w-4" : "bg-gray-500/50"
-            }`}
-          />
-        ))}
+        {/* Botões */}
+        <button
+          onClick={() =>
+            setActiveIndex((prev) =>
+              prev === 0 ? services.length - 1 : prev - 1
+            )
+          }
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-yellow-400 p-3 rounded-full text-lg font-bold z-30"
+        >
+          ‹
+        </button>
+        <button
+          onClick={() => setActiveIndex((prev) => (prev + 1) % services.length)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-yellow-400 p-3 rounded-full text-lg font-bold z-30"
+        >
+          ›
+        </button>
+      </div>
+      {/* Contato Personalizado */}
+      <div className="mt-12  mx-auto flex flex-col gap-4 ">
+        <div className="bg-yellow-400/20  border  w-full max-w-md rounded-xl border-yellow-100/20 items-center justify-center p-6 shadow-lg gap-19 pt-5">
+          <h1 className="text-2xl font-bold py-4 text-yellow-400">
+            Não encontrou o serviço que procurava?
+          </h1>
+          <p className="text-lg text-white gap-2 py-2 ">
+            Entre em contato conosco para serviços personalizado.
+          </p>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-3 gap-2 text-center justify-center flex bg-yellow-400 text-black font-semibold rounded-full w-full transition-all hover:bg-yellow-300 hover:scale-[1.05] hover:animate-[pulse-yellow_1.2s_ease-in-out_infinite]"
+          >
+            Solicite um orçamento personalizado via WhatsApp
+          </a>
+        </div>
       </div>
     </section>
   );
