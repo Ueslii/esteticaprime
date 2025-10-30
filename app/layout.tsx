@@ -12,9 +12,34 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Estética Prime",
-  description: "Detalhamento e Lavagem Automotiva",
+export const metadata = {
+  title: "Estética Automotiva Prime | Lavagem e Polimento Profissional",
+  description:
+    "Serviços de estética automotiva em Amargosa — lavagem, polimento e restauração com qualidade premium.",
+  keywords: [
+    "lavagem de carro",
+    "polimento automotivo",
+    "estética automotiva",
+    "Amargosa",
+    "restauração de motor",
+  ],
+  openGraph: {
+    title: "Prime Estética Automotiva",
+    description:
+      "Seu carro merece o melhor. Agende um serviço conosco e veja a diferença!",
+    url: "https://esteticaprime.vercel.app/",
+    siteName: "Prime Estética Automotiva",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Prime Estética Automotiva",
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

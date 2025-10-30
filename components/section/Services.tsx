@@ -8,28 +8,28 @@ const services = [
     title: "Lavagem de Carros Básica",
     description: "Lavagem rápida e eficiente para manter seu carro limpo.",
     price: "R$30,00",
-    image: "/polimento.jpg",
+    image: "/carrobasica.png",
     includes: ["Lavagem externa", "Secagem manual", "Limpeza de vidros"],
   },
   {
     title: "Lavagem de Caminhonetes Básica",
     description: "Polimento longo2",
     price: "R$40,00",
-    image: "/polimento.jpg",
+    image: "/caminhonetebasica.png",
     includes: ["Lavagem externa", "Secagem manual", "Limpeza de vidros"],
   },
   {
     title: "Lavagem de Motos Básica Pop/Biz/Jet",
     description: "lavagem para motos pequenas",
     price: "R$ 15,00",
-    image: "/polimento.jpg",
+    image: "/basicapop.png",
     includes: ["Item 1"],
   },
   {
     title: "Lavagem de Motos Básica Outras",
     description: "Outras motos",
     price: "R$ 20,00",
-    image: "/polimento.jpg",
+    image: "/motobasica.png",
     includes: ["Item 1"],
   },
   {
@@ -37,7 +37,7 @@ const services = [
     description:
       "Lavagem detalhada para Carros, Motos e Caminhonetes apenas com avaliacão, entre em contato.",
     price: "Entre em contato",
-    image: "/polimento.jpg",
+    image: "/detalhada.png",
     includes: ["Entre em contato para mais detalhes"],
   },
   {
@@ -45,7 +45,7 @@ const services = [
     description:
       "Cansado de ver seu motor sujo? Deixe-nos restaurá-lo para você.",
     price: "Faça um orçamento",
-    image: "/polimento.jpg",
+    image: "/restauracao.png",
     includes: ["Item 1"],
   },
 ];
