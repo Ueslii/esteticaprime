@@ -23,7 +23,8 @@ export default function ServiceCard({
 
   return (
     <div
-      className={`group relative flex flex-col bg-[#0B1320] rounded-xl border border-yellow-500/20 overflow-visible shadow-lg transition-all duration-500 hover:shadow-yellow-400/20 hover:scale-[1.03] min-h-[480px] min-h-fit`}
+      className={`group relative flex flex-col bg-[#0B1320] rounded-xl border border-yellow-500/20 overflow-visible shadow-lg transition-all  duration-500 hover:shadow-yellow-400/20 hover:scale-[1.03] `}
+      style={{ height: "auto", minHeight: "520px" }}
     >
       {/* Imagem */}
       <div className="relative w-full h-[260px] rounded-t-xl overflow-hidden">
@@ -60,7 +61,7 @@ export default function ServiceCard({
         {/* Expansão suave */}
         <div
           className={`overflow-visible transition-all rounded-xl duration-500 ease-in-out ${
-            expanded ? "max-h-48 mt-4" : "max-h-0"
+            expanded ? "max-h-[800px] mt-4" : "max-h-0"
           }`}
         >
           {expanded && (
@@ -73,7 +74,7 @@ export default function ServiceCard({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3 gap-2 text-center justify-center flex bg-yellow-400 text-black font-semibold rounded-full w-full transition-all hover:bg-yellow-300 hover:scale-[1.05] hover:animate-[pulse-yellow_1.2s_ease-in-out_infinite]"
+                  className="py-3 gap-2 text-center justify-center flex bg-yellow-400 text-black font-semibold rounded-full w-full transition-all hover:bg-yellow-300 hover:scale-[1.10] hover:animate-[pulse-yellow_1.7s_ease-in-out_infinite]"
                 >
                   {title === "Lavagem Detalhada"
                     ? "ENTRE EM CONTATO"

@@ -60,13 +60,9 @@ const services = [
     price: "Entre em contato",
     image: "/detalhada.png",
     includes: [
-      "Motos:",
-      "Desmontagem das carenagens",
-      "Limpeza da parte elétrica",
-      "Lavagem do chassi com aplicação de Verniz de Motor.",
-      "Lavagem das carenagens individualmente.",
-      "Aplicação de cera",
-      "Limpeza do kit relação (coroa, corrente e pinhão)",
+      "🚗 Carros: Secagem manual, Aplicação de cera, Aplicação de revitalizador de plásticos, Limpeza para remover manchas e contaminantes presentes na pintura, Higienização dos vidros e retrovisores, Limpeza interna,Limpeza dos vidros, Limpeza das borrachas de portas, Aplicação de revitalizador  em painel , e console.",
+      "🚙 Caminhonetes:Tudo do Carro + Restauração de capota",
+      "🏍️ Motos: Desmontagem das carenagens, Limpeza da parte elétrica, Lavagem do chassi com aplicação de Verniz de Motor, Lavagem das carenagens individualmente, Aplicação de cera, Aplicação de revitalizador de plásticos, Limpeza do kit relação (coroa, corrente e pinhão)",
     ],
   },
   {
@@ -112,7 +108,7 @@ export default function Services() {
       <div className="md:hidden relative w-full overflow-x-clip">
         <div
           id="services-carousel"
-          className="flex justify-center items-center w-full h-[520px] overflow-visible relative py-8 touch-pan-x"
+          className="flex justify-center flex-col min-h items-center w-full h-[520px] overflow-visible relative py-8 touch-pan-x"
           style={{
             overscrollBehaviorX: "none",
             paddingInline: "10vw", // mantém área de swipe suficiente
@@ -164,11 +160,11 @@ export default function Services() {
               }}
             >
               <div
-                className={`w-[85vw] max-w-[400px] min-h-[480px] ${
+                className={`w-[85vw]  ${
                   isActive ? "pointer-events-auto" : "pointer-events-none"
                 }`}
               >
-                <div className="w-[85vw]  max-w-[400px] min-h-[480px]">
+                <div className="w-[85vw]  ">
                   <ServiceCard
                     {...service}
                     whatsappUrl={buildWhatsappUrl(service.title)}
