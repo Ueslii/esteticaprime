@@ -61,6 +61,7 @@ export default function Services() {
     <section
       id="services"
       className="py-20 p-2 flex flex-col items-center justify-center text-center hover:shadow-yellow-400/20 hover:z-50"
+      style={{ overscrollBehaviorX: "none" }}
     >
       <div className="mb-8 text-xl sm:text-3xl md:text-4xl font-bold text-yellow-400">
         <h1>Nossos Serviços</h1>
@@ -79,32 +80,38 @@ export default function Services() {
         ))}
       </div>
       {/* Mobile Carousel */}
-      <div
-        id="services-carousel"
-        className="md:hidden  flex justify-center items-center w-full h-[520px] overflow-visible relative py-8 touch-pan-y"
-        onTouchStart={(e) =>
-          (e.currentTarget.dataset.startX = e.touches[0].clientX.toString())
-        }
-        onTouchEnd={(e) => {
-          const startX = parseFloat(e.currentTarget.dataset.startX || "0");
-          const endX = e.changedTouches[0].clientX;
-          const delta = endX - startX;
-
-          if (Math.abs(delta) > 50) {
-            setActiveIndex((prev) =>
-              delta > 0
-                ? (prev - 1 + services.length) % services.length
-                : (prev + 1) % services.length
-            );
+      <div className="md:hidden relative w-full overflow-x-clip">
+        <div
+          id="services-carousel"
+          className="flex justify-center items-center w-full h-[520px] overflow-visible relative py-8 touch-pan-x"
+          style={{
+            overscrollBehaviorX: "none",
+            paddingInline: "10vw", // mantém área de swipe suficiente
+            touchAction: "pan-y pinch-zoom", // evita travar gesto
+          }}
+          onTouchStart={(e) =>
+            (e.currentTarget.dataset.startX = e.touches[0].clientX.toString())
           }
-        }}
-      >
+          onTouchEnd={(e) => {
+            const startX = parseFloat(e.currentTarget.dataset.startX || "0");
+            const endX = e.changedTouches[0].clientX;
+            const delta = endX - startX;
+
+            if (Math.abs(delta) > 50) {
+              setActiveIndex((prev) =>
+                delta > 0
+                  ? (prev - 1 + services.length) % services.length
+                  : (prev + 1) % services.length
+              );
+            }
+          }}
+        ></div>
         {services.map((service, i) => {
           const offset = i - activeIndex;
           const isActive = offset === 0;
 
           const transform = `
-      translateX(${offset * 75}%) 
+      translateX(${offset * 70}%) 
       scale(${isActive ? 1 : 0.9}) 
       rotateY(${offset * -4}deg)
     `;
@@ -115,7 +122,7 @@ export default function Services() {
           return (
             <div
               key={i}
-              className="absolute transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex justify-center items-center"
+              className="absolute transition-all  overflow-visible duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex justify-center items-center "
               style={{
                 transform,
                 zIndex,
@@ -127,11 +134,17 @@ export default function Services() {
                 translate: "-50% -50%",
               }}
             >
-              <div className="w-[85vw] max-w-[400px] min-h-[480px]">
-                <ServiceCard
-                  {...service}
-                  whatsappUrl={buildWhatsappUrl(service.title)}
-                />
+              <div
+                className={`w-[85vw] max-w-[400px] min-h-[480px] ${
+                  isActive ? "pointer-events-auto" : "pointer-events-none"
+                }`}
+              >
+                <div className="w-[85vw]  max-w-[400px] min-h-[480px]">
+                  <ServiceCard
+                    {...service}
+                    whatsappUrl={buildWhatsappUrl(service.title)}
+                  />
+                </div>
               </div>
             </div>
           );

@@ -26,7 +26,7 @@ export default function ServiceCard({
       className={`group relative flex flex-col bg-[#0B1320] rounded-xl border border-yellow-500/20 overflow-visible shadow-lg transition-all duration-500 hover:shadow-yellow-400/20 hover:scale-[1.03] min-h-[480px] min-h-fit`}
     >
       {/* Imagem */}
-      <div className="relative w-full h-[260px] overflow-hidden">
+      <div className="relative w-full h-[260px] rounded-t-xl overflow-hidden">
         <Image
           src={image}
           alt={title}
@@ -39,7 +39,7 @@ export default function ServiceCard({
       </div>
 
       {/* Conteúdo */}
-      <div className="flex flex-col justify-between flex-1 bg-[#0B1320] px-8 py-6">
+      <div className="flex flex-col rounded-b-xl justify-between flex-1 bg-[#0B1320] px-8 py-6">
         <div>
           <h3 className="text-xl font-bold text-yellow-400 mb-2">
             {title.toUpperCase()}
@@ -59,12 +59,12 @@ export default function ServiceCard({
 
         {/* Expansão suave */}
         <div
-          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+          className={`overflow-visible transition-all rounded-xl duration-500 ease-in-out ${
             expanded ? "max-h-48 mt-4" : "max-h-0"
           }`}
         >
           {expanded && (
-            <ul className="list-disc mb-2 list-inside text-gray-300 text-sm space-y-1 mt-2 mb-2">
+            <ul className="list-disc rounded-xl overflow-visible  list-inside text-gray-300 text-sm space-y-1 mt-2 mb-2">
               {includes.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}

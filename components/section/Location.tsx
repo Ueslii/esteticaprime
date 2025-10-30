@@ -1,6 +1,9 @@
 export default function Location() {
   return (
-    <section id="location" className="py-16 bg-[#0B1320] text-center">
+    <section
+      id="location"
+      className="py-6 bg-[#0B1320] rounded-xl p-8 text-center"
+    >
       <h2 className="text-3xl font-bold text-yellow-400 mb-6">Localização</h2>
       <div className="flex justify-center">
         <iframe

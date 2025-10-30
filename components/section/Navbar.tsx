@@ -2,7 +2,6 @@
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { siteInfo } from "@/data/site";
-
 export default function Navbar() {
   const whatsappUrl = `https://wa.me/${
     siteInfo.whatsapp
@@ -14,7 +13,6 @@ export default function Navbar() {
         <h1 className=" flex text-2xl sm:text-2xl md:text-4xl font-bold text-[var(--color-yellow)]">
           ESTÉTICA PRIME
         </h1>
-        {/*<img src="./image/logo.jpg" alt="Logo" width={60} height={10} />*/}
         <div className=" items-center justify-center gap-8 text-lg hidden md:flex">
           <a className="flex items-center " href="#hero">
             Inicio
@@ -22,9 +20,9 @@ export default function Navbar() {
           <a className="flex  items-center " href="#services">
             Serviços
           </a>
-          <a className="flex  items-center " href="#sobre">
+          {/*<a className="flex  items-center " href="#sobre">
             Sobre
-          </a>
+          </a>*/}
           <a className="flex  items-center " href="#contact">
             Contato
           </a>
