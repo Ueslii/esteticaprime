@@ -60,9 +60,8 @@ export default function Contact() {
                 Horários
               </h3>
               <p className="text-gray-200 text-sm leading-relaxed">
-                Segunda: 12:00 - 17:00 <br />
-                Terça a Sexta: 08:00 - 17:00 <br />
-                Sábado e Domingo: 07:00 - 17:00
+                Segunda a Sexta: 12:00 - 17:00 <br />
+                Sábado e Domingo: 12:00 - 17:00
               </p>
             </div>
           </div>
